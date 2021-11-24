@@ -5,10 +5,7 @@ const config =
   port: 3000,
 
   // Debug: this option turn the headless off.
-  debug: false,
-
-  // Log: this option enables the logs in console.
-  log: false
+  debug: false
 }
 
 module.exports = { config }

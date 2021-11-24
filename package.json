@@ -4,17 +4,14 @@
   "description": "Website dedicated to monitoring the stock of graphics cards and game consoles in the main technology providers in Spain",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Enric Sola",
   "license": "MIT",
   "devDependencies": {
-    "standard": "^16.0.4"
-  },
-  "eslintConfig": {
-    "extends": "standard"
+    "eslint": "^8.3.0"
   },
   "dependencies": {
     "express": "^4.17.1",

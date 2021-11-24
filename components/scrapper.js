@@ -10,6 +10,7 @@ async function scrapper () {
 
   const available = []
   console.log('Starting scrap...')
+  let jsonArray = {}
 
   for (const shop of products('PlayStation5')) {
     const { checkStock, vendor, url } = shop
@@ -28,9 +29,25 @@ async function scrapper () {
     await page.close()
   }
 
-  const availableOn = available.length > 0
-    ? `Disponible en: ${available.join(', ')}`
-    : 'No hay stock 😢'
+  for (const shop of products('XboxSeriesX')) {
+    const { checkStock, vendor, url } = shop
+
+    const page = await meta.newPage()
+    await page.goto(url)
+
+    const hasStock = await checkStock({ page })
+    if (hasStock) available.push(vendor)
+
+    const log = `${vendor}: ${hasStock
+      ? () => {
+        jsonArray.push()
+        
+      }
+      : 'Out of Stock 🥲'}`
+
+    console.log(log)
+    await page.close()
+  }
 
   await browser.close()
 }

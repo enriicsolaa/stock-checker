@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const scrapper = require('./components/scrapper')
+const jsonManager = require('./components/jsonManager')
 
 const port = 3000
 
@@ -9,7 +10,8 @@ const port = 3000
 })()
 
 app.get('/', async (req, res) => {
-  scrapper()
+  const si = jsonManager.read()
+  await console.log(si)
   res.setHeader('Content-Type', 'application/json')
 })
 
