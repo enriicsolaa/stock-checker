@@ -1,55 +1,36 @@
 const { chromium } = require('playwright-chromium')
 const { config } = require('../config')
 const { products } = require('./products')
+const fs = require('fs')
 
-const fakeUserAgent = 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0'
+let outputFileSchema = { 'PlayStation5': [], 'XboxSeriesX': [] }
 
-async function scrapper () {
-  const browser = await chromium.launch({ headless: config.debug })
-  const meta = await browser.newContext({ userAgent: fakeUserAgent })
+async function scrapper (productToScrap) {
 
-  const available = []
-  console.log('Starting scrap...')
-  let jsonArray = {}
+  let meta = undefined
+  const browser = await chromium.launch({ headless: !config.debug })
+  if (!config.UseCustomUserAgent) meta = await browser.newContext()
+  if (config.UseCustomUserAgent) meta = await browser.newContext({ userAgent: config.CustomUserAgent })
 
-  for (const shop of products('PlayStation5')) {
+  if (config.log) console.log('Starting scrap...')
+
+  // Start loop for checking shops
+  for (const shop of products(productToScrap)) {
     const { checkStock, vendor, url } = shop
 
     const page = await meta.newPage()
     await page.goto(url)
 
     const hasStock = await checkStock({ page })
-    if (hasStock) available.push(vendor)
+    outputFileSchema.XboxSeriesX.push({ 'vendor': vendor, 'hasStock': hasStock })
 
-    const log = `${vendor}: ${hasStock
-      ? 'HAS STOCK!!!! 🤩'
-      : 'Out of Stock 🥲'}`
-
-    console.log(log)
+    let logOutput = `${vendor}: ${hasStock ? 'With stock!!' : 'Out of stock...'}`
+    if (config.log) console.log(logOutput)
     await page.close()
   }
-
-  for (const shop of products('XboxSeriesX')) {
-    const { checkStock, vendor, url } = shop
-
-    const page = await meta.newPage()
-    await page.goto(url)
-
-    const hasStock = await checkStock({ page })
-    if (hasStock) available.push(vendor)
-
-    const log = `${vendor}: ${hasStock
-      ? () => {
-        jsonArray.push()
-        
-      }
-      : 'Out of Stock 🥲'}`
-
-    console.log(log)
-    await page.close()
-  }
-
+  fs.writeFileSync('./stock.json', JSON.stringify(outputFileSchema))
   await browser.close()
+  console.log('Scrap success!')
 }
 
 module.exports = { scrapper }

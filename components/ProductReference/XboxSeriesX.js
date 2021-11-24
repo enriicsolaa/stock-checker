@@ -1,3 +1,4 @@
+// repair fnac and pccomponentes
 const XboxSeriesX = [
   {
     vendor: 'Amazon ES',

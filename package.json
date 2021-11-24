@@ -4,7 +4,7 @@
   "description": "Website dedicated to monitoring the stock of graphics cards and game consoles in the main technology providers in Spain",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
