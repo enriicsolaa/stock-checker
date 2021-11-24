@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const scrapper = require('./modules/scrapper')
+const scrapper = require('./components/scrapper')
 
 const port = 3000
 
@@ -9,6 +9,7 @@ const port = 3000
 })()
 
 app.get('/', async (req, res) => {
+  scrapper()
   res.setHeader('Content-Type', 'application/json')
 })
 

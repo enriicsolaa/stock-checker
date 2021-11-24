@@ -1,7 +1,7 @@
-const xboxSeriesXBlack = [
+const XboxSeriesX = [
   {
     vendor: 'Amazon ES',
-    url: 'https://www.amazon.es/dp/B08H93ZRLL/ref=cm_sw_r_cp_apa_glt_i_91H0Z62WVDRT6FMW033Z?tag=eol00-21',
+    url: 'https://www.amazon.es/dp/B08H93ZRLL/ref=cm_sw_r_cp_apa_glt_i_91H0Z62WVDRT6FMW033Z',
     checkStock: async ({ page }) => {
       const addToCartButton = await page.$$('#add-to-cart-button')
       return addToCartButton.length > 0
@@ -46,16 +46,7 @@ const xboxSeriesXBlack = [
       const content = await page.textContent('#buy-buttons-section')
       return content && content.includes('Añadir al carrito') === true
     }
-  },
-  {
-    vendor: 'MediaMarkt',
-    url: 'https://www.mediamarkt.es/es/product/_consola-microsoft-xbox-series-x-1-tb-ssd-negro-1487615.html',
-    checkStock: async ({ page }) => {
-      const content = await page.textContent('[data-test="pdp-product-not-available"]')
-      return content.includes('no está disponible') === false
-    }
   }
 ]
-module.exports = {
-  xboxSeriesXBlack
-}
+
+module.exports = { XboxSeriesX }

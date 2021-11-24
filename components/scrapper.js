@@ -1,19 +1,17 @@
-// @ts-check
-
 const { chromium } = require('playwright-chromium')
-const { xboxSeriesXBlack } = require('../products/xboxSeriesXBlack')
+const { config } = require('../config')
+const { products } = require('./products')
 
-const debug = true
 const fakeUserAgent = 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0'
 
-module.exports = async function () {
-  const browser = await chromium.launch({ headless: !debug })
+async function scrapper () {
+  const browser = await chromium.launch({ headless: config.debug })
   const meta = await browser.newContext({ userAgent: fakeUserAgent })
 
   const available = []
   console.log('Starting scrap...')
 
-  for (const shop of xboxSeriesXBlack) {
+  for (const shop of products('PlayStation5')) {
     const { checkStock, vendor, url } = shop
 
     const page = await meta.newPage()
@@ -36,3 +34,5 @@ module.exports = async function () {
 
   await browser.close()
 }
+
+module.exports = { scrapper }
