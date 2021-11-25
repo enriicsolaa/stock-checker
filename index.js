@@ -9,20 +9,25 @@ let counter = 0
 ;(async () => {
   setInterval(() => {
     if (counter == 0) {
-      scrapper('XboxSeriesX')
+      scrapper('PlayStation5')
       counter++
 
     } else if (counter == 1) {
-      scrapper('PlayStation5')
+      scrapper('XboxSeriesX')
       counter = 0
 
     }
-  }, 15000)
+  }, 900000)
 })()
 
-app.get('/', async (req, res) => {
+app.get('/PlayStation5/', async (req, res) => {
   res.setHeader('Content-Type', 'application/json')
-  await res.json(jsonManager.read())
+  await res.json(jsonManager.read('./stocks/PlayStation5.json'))
+})
+
+app.get('/XboxSeriesX/', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+  await res.json(jsonManager.read('./stocks/XboxSeriesX.json'))
 })
 
 app.listen(config.port, () => {

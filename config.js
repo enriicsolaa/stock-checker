@@ -5,14 +5,14 @@ const config =
   port: 3000,
 
   // Debug: this option turn off the headless option.
-  debug: false,
+  debug: true,
 
   // Log: show in console the log from scrapping process
   log: true,
 
   // UseCustomUserAgent:
   UseCustomUserAgent: true,
-  CustomUserAgent: 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0'
+  CustomUserAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'
 
 }
 

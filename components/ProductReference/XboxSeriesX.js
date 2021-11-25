@@ -24,14 +24,16 @@ const XboxSeriesX = [
       return content.includes('Producto no disponible') === false
     }
   },
+  /*
   {
     vendor: 'Fnac',
     url: 'https://www.fnac.es/Consola-Xbox-Series-X-1TB-Negro-Videoconsola-Consola/a7732201',
     checkStock: async ({ page }) => {
-      const notAvailableIcon = await page.$$('.f-buyBox-availabilityStatus-unavailable')
+      const notAvailableIcon = await page.textContent('.f-buyBox-availabilityStatus-unavailable')
       return notAvailableIcon.length === 0
     }
   },
+  */
   {
     vendor: 'El Corte Inglés',
     url: 'https://www.elcorteingles.es/videojuegos/A37047078-xbox-series-x/',
@@ -45,7 +47,7 @@ const XboxSeriesX = [
     url: 'https://www.pccomponentes.com/microsoft-xbox-series-x-1tb',
     checkStock: async ({ page }) => {
       const content = await page.textContent('#buy-buttons-section')
-      return content && content.includes('Añadir al carrito') === true
+      return content.includes('Añadir al carrito') === true
     }
   }
 ]
