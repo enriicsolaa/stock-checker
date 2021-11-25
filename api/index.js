@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
 const { join } = require('path')
-const jsonManager = require('./components/jsonManager')
-const { scrapper } = require('./components/scrapper')
-const { config } = require('./config')
+const jsonManager = require('../components/jsonManager')
+const { scrapper } = require('../components/scrapper')
+const { config } = require('../config')
 let counter = 0
 
 ;(async () => {
@@ -23,8 +23,8 @@ let counter = 0
 app.get('/', async (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
-  const ps5 = jsonManager.read(join(__dirname, 'stocks', 'PlayStation5.json'), 'utf8')
-  const xbox = jsonManager.read(join(__dirname, 'stocks', 'XboxSeriesX.json'), 'utf8')
+  const ps5 = jsonManager.read(join(__dirname, '../stocks', 'PlayStation5.json'), 'utf8')
+  const xbox = jsonManager.read(join(__dirname, '../stocks', 'XboxSeriesX.json'), 'utf8')
   let responseJson = []
   responseJson.push(ps5)
   responseJson.push(xbox)
