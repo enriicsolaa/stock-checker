@@ -1,16 +1,10 @@
 {
   "version": 2,
   "functions": {
-    "api/hello.js": {
-      "includeFiles": "_files/**"
+    "index.js": {
+      "includeFiles": "stocks/**"
     }
   },
-  "builds": [
-    {
-      "src": "./index.js",
-      "use": "@vercel/node"
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",
