@@ -23,8 +23,8 @@ let counter = 0
 app.get('/api/', async (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
-  const ps5 = jsonManager.read('./stocks/PlayStation5.json')
-  const xbox = jsonManager.read('./stocks/XboxSeriesX.json')
+  const ps5 = jsonManager.read('/stocks/PlayStation5.json')
+  const xbox = jsonManager.read('/stocks/XboxSeriesX.json')
   let responseJson = []
   responseJson.push(ps5)
   responseJson.push(xbox)
