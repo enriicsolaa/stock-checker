@@ -31,22 +31,6 @@ app.get('/api/', async (req, res) => {
   await res.json(responseJson)
 })
 
-app.get('/api/:product', async (req, res) => {
-  res.setHeader('Content-Type', 'application/json')
-
-  const product = String(req.params.product)
-
-  if (
-    product == 'PlayStation5'
-    || product == 'XboxSeriesX') {
-    await res.json(jsonManager.read('./stocks/' + product + '.json'))
-  } else {
-    res.json({'Error': 'Bad request'})
-
-  }
-    
-})
-
 app.listen(config.port, () => {
   console.log(`Server running on port ${ config.port }`)
 })
