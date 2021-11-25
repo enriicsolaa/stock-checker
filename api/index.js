@@ -20,7 +20,7 @@ let counter = 0
   }, 900000)
 })()
 
-app.get('/', async (req, res) => {
+app.get('/api/', async (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
   const ps5 = jsonManager.read(join(__dirname, '../stocks', 'PlayStation5.json'), 'utf8')
@@ -31,7 +31,7 @@ app.get('/', async (req, res) => {
   await res.json(responseJson)
 })
 
-app.get('/:product', async (req, res) => {
+app.get('/api/:product', async (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
   const product = String(req.params.product)
