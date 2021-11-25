@@ -4,7 +4,7 @@
   "description": "Website dedicated to monitoring the stock of graphics cards and game consoles in the main technology providers in Spain",
   "main": "index.js",
   "engines": {
-    "node": "16.x"
+    "node": "14.x"
   },
   "scripts": {
     "start": "node index.js"
