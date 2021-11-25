@@ -20,14 +20,31 @@ let counter = 0
   }, 900000)
 })()
 
-app.get('/PlayStation5/', async (req, res) => {
+app.get('/api/', async (req, res) => {
   res.setHeader('Content-Type', 'application/json')
-  await res.json(jsonManager.read('./stocks/PlayStation5.json'))
+
+  const ps5 = jsonManager.read('./stocks/PlayStation5.json')
+  const xbox = jsonManager.read('./stocks/XboxSeriesX.json')
+  let responseJson = []
+  responseJson.push(ps5)
+  responseJson.push(xbox)
+  await res.json(responseJson)
 })
 
-app.get('/XboxSeriesX/', async (req, res) => {
+app.get('/api/:product', async (req, res) => {
   res.setHeader('Content-Type', 'application/json')
-  await res.json(jsonManager.read('./stocks/XboxSeriesX.json'))
+
+  const product = String(req.params.product)
+
+  if (
+    product == 'PlayStation5'
+    || product == 'XboxSeriesX') {
+    await res.json(jsonManager.read('./stocks/' + product + '.json'))
+  } else {
+    res.json({'Error': 'Bad request'})
+
+  }
+    
 })
 
 app.listen(config.port, () => {
