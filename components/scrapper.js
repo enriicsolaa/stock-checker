@@ -2,7 +2,6 @@ const { chromium } = require('playwright-chromium')
 const { config } = require('../config')
 const { products } = require('./products')
 const jsonManager = require('./jsonManager')
-const { join } = require('path')
 
 let outputFileSchemaPs = {'PlayStation5': []}
 let outputFileSchemaXbox = {'XboxSeriesX': []}
@@ -32,8 +31,8 @@ async function scrapper (productToScrap) {
     await page.close()
   }
 
-  if (productToScrap == 'PlayStation5') jsonManager.write(join(__dirname, '../stocks', 'PlayStation5.json'), 'utf8', JSON.stringify(outputFileSchemaPs))
-  if (productToScrap == 'XboxSeriesX') jsonManager.write(join(__dirname, '../stocks', 'XboxSeriesX.json'), JSON.stringify(outputFileSchemaXbox))
+  if (productToScrap == 'PlayStation5') jsonManager.write('./stocks/PlayStation5.json', outputFileSchemaPs)
+  if (productToScrap == 'XboxSeriesX') jsonManager.write('./stocks/XboxSeriesX.json', outputFileSchemaXbox)
 
   await browser.close()
   console.log('Scrap success!')
