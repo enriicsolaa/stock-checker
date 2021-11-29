@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
 const { join } = require('path')
-const jsonManager = require('./components/jsonManager')
-const { scrapper } = require('./components/scrapper')
-const { config } = require('./config')
+const jsonManager = require('../components/jsonManager')
+const { scrapper } = require('../components/scrapper')
+const { config } = require('../config')
 let counter = 0
 
 ;(async () => {
@@ -17,7 +17,7 @@ let counter = 0
       counter = 0
 
     }
-  }, 30000)
+  }, 900000)
 })()
 
 app.get('/api/', async (req, res) => {

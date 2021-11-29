@@ -2,10 +2,10 @@
   "name": "stock-checker",
   "version": "1.0.0",
   "description": "Website dedicated to monitoring the stock of graphics cards and game consoles in the main technology providers in Spain",
-  "main": "index.js",
+  "main": "api/index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js"
   },
   "keywords": [],
   "author": "Enric Sola",
